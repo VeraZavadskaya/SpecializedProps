@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SpecializedProps.View.Pages
+namespace SpecializedProps.View.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для DecoratedMenuPage.xaml
+    /// Логика взаимодействия для AddCustomerWindow.xaml
     /// </summary>
-    public partial class DecoratedMenuPage : Page
+    public partial class AddCustomerWindow : Window
     {
-        public DecoratedMenuPage()
+        public AddCustomerWindow()
         {
             InitializeComponent();
         }

@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6bbdaa910db9438da46ebbd71da700de" Name="Diagram1">
-        <EntityTypeShape EntityType="SpecializedPropsModel.Branch" Width="1.5" PointX="3" PointY="20.75" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.City" Width="1.5" PointX="0.75" PointY="21" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.Customer" Width="1.5" PointX="3" PointY="17.25" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.Furniture" Width="1.5" PointX="0.75" PointY="14.875" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.FurnitureMaterial" Width="1.5" PointX="3" PointY="13.5" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.Gender" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.Material" Width="1.5" PointX="0.75" PointY="12.625" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.Branch" Width="1.5" PointX="3" PointY="13.875" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.City" Width="1.5" PointX="0.75" PointY="14.125" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.Customer" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.Furniture" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.FurnitureMaterial" Width="1.5" PointX="3" PointY="3.5" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.Gender" Width="1.5" PointX="0.75" PointY="16.625" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.Material" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="SpecializedPropsModel.Order" Width="1.5" PointX="5.25" PointY="2" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.Payment" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.Role" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.StatusOrder" Width="1.5" PointX="3" PointY="10.25" />
-        <EntityTypeShape EntityType="SpecializedPropsModel.User" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.Payment" Width="1.5" PointX="3" PointY="11.5" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.Role" Width="1.5" PointX="0.75" PointY="19" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.StatusOrder" Width="1.5" PointX="3" PointY="21.375" />
+        <EntityTypeShape EntityType="SpecializedPropsModel.User" Width="1.5" PointX="3" PointY="16.875" />
         <AssociationConnector Association="SpecializedPropsModel.FK_Branch_City" />
         <AssociationConnector Association="SpecializedPropsModel.FK_Order_Branch" />
         <AssociationConnector Association="SpecializedPropsModel.FK_Order_Customer" />

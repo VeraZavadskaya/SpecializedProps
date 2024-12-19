@@ -23,12 +23,23 @@ namespace SpecializedProps
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            ListFrame.Navigate(new View.Pages.AllMenuPage());
-            
+            if (App.currentUser.IdRole == 3)
+            {
+                CreateBtn.IsEnabled = false;
+                CreateBtn.Visibility = Visibility.Collapsed;
+            }
+
+            BranchCmb.DisplayMemberPath = "Adress";
+            BranchCmb.SelectedValuePath = "Id";
+            BranchCmb.ItemsSource = App.context.Branch.ToList();
+
+            AllMenuLv.ItemsSource = App.context.Order.ToList();
+
         }
 
         private void CreateBtn_Click(object sender, RoutedEventArgs e)
@@ -39,54 +50,63 @@ namespace SpecializedProps
            
         }
 
-        private void SearchBtn_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void AllMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.AllMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.ToList();
         }
 
         private void NewMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.NewMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 1).ToList();
+
         }
 
         private void SentMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.SentMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 2).ToList();
         }
 
         private void DecoratedMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.DecoratedMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 3).ToList();
         }
 
         private void ReturnedMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.ReturnedMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 4).ToList();
         }
 
         private void RunningMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.RunningMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 5).ToList();
         }
 
         private void ExecutedMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.ExecutedMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 6).ToList();
         }
 
         private void ShippedMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.ShippedMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 7).ToList();
         }
 
         private void CancelledMenuHl_Click(object sender, RoutedEventArgs e)
         {
-            ListFrame.Navigate(new View.Pages.CancelledMenuPage());
+            AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 8).ToList();
+        }
+
+        private void SearchTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (SearchTb.Text != string.Empty)
+            {
+                AllMenuLv.ItemsSource = App.context.Order.Where(o => o.Id == SearchTb.Text).ToList();
+            }
+            else
+            {
+                AllMenuLv.ItemsSource = App.context.Order.ToList();
+            }
         }
     }
 }

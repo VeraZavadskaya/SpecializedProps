@@ -24,44 +24,60 @@ namespace SpecializedProps.View.Windows
         public AuthorizationWindow()
         {
             InitializeComponent();
+
+            LoadUserData();
         }
 
-        private void DirectorBtn_Click(object sender, RoutedEventArgs e)
+
+        /// <summary>
+        /// Функция производит загрузку данных пользователя из памяти приложения в поля для ввода.
+        /// </summary>
+        private void LoadUserData()
         {
-
-        }
-
-        private void MenegerBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SpecialistBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RememberMeCb_Click(object sender, RoutedEventArgs e)
-        {
-
+            if(Properties.Settings.Default.LoginValue != string.Empty)
+            {
+                LoginTb.Text = Properties.Settings.Default.LoginValue;
+                PasswordPb.Password = Properties.Settings.Default.PasswordValue;
+            }
         }
 
 
         private void EnterBtn_Click(object sender, RoutedEventArgs e)
         {
-            //    User user = App.context.User.FirstOrDefault(u => u.Email == LoginTb.Text && u.Password == PaswordPb.Password);
+            if(string.IsNullOrEmpty(LoginTb.Text) && string.IsNullOrEmpty(PasswordPb.Password))
+            {
+                MessageBoxHelper.Error("Введите логин и пароль!");
+            }
+            if(string.IsNullOrEmpty(LoginTb.Text) || string.IsNullOrEmpty(PasswordPb.Password))
+            {
+                MessageBoxHelper.Error("Введите логин или пароль!");
+            }
+             User newUser = App.context.User.FirstOrDefault(u => u.Email == LoginTb.Text && u.Password == PasswordPb.Password);
 
-            //    if(user != null)
-            //    {
-            //        App.currentUser = user;
-            MainWindow mainWindow = new MainWindow();
+            if(newUser != null)
+            {
+                if (RememberMeCb.IsChecked == true)
+                {
+                    Properties.Settings.Default.LoginValue = LoginTb.Text;
+                    Properties.Settings.Default.PasswordValue = PasswordPb.Password;
+                }
+                else
+                {
+                    Properties.Settings.Default.LoginValue = string.Empty;
+                    Properties.Settings.Default.PasswordValue = string.Empty;
+                }
+
+                Properties.Settings.Default.Save();
+
+                App.currentUser = newUser;
+                MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 this.Close();
-        //    }
-        //    else
-        //    {
-        //        MessageBoxHelper.Warning("Пользователь не найден!");
-        //    }
+            }
+            else
+            {
+                MessageBoxHelper.Warning("Пользователь не найден!");
+            }
         }
 
     }

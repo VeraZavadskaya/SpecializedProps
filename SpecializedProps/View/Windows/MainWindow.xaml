@@ -12,13 +12,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-        <Border Grid.RowSpan="2" Background="#7F7F7F">
+        <Border Background="#7F7F7F">
             <Grid Margin="10 0 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
@@ -85,32 +80,73 @@
                 <Button Name="CreateBtn" Content="Создать заказ" Grid.Row="13" Height="50" Width="150" VerticalAlignment="Top" Click="CreateBtn_Click"/>
             </Grid> 
         </Border>
-        <Border Grid.Column="1" Grid.ColumnSpan="2" Background="#D9D9D9">
-            <Grid Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition Width="300" />
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="100" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Филиал:" Grid.Column="1" Grid.Row="2" Foreground="Black"/>
-                <ComboBox Name="BranchCmb" Grid.Column="3" Grid.Row="2"/>
-                <TextBlock Text="Поиск:" Grid.Row="1" Grid.Column="5" Foreground="Black"/>
-                <TextBox Name="SearchTb" Grid.Row="1" Grid.Column="7"/>
-                <Button Name="SearchBtn" Content="Найти" FontSize="20" Grid.Column="9" Grid.RowSpan="3" Height="40" VerticalAlignment="Center" Click="SearchBtn_Click_1"/>
-            </Grid>
-        </Border>
-        <Frame Name="ListFrame" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1"/>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Border Background="#D9D9D9">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="300" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Филиал:" Grid.Column="1" Grid.Row="2" Foreground="Black"/>
+                    <ComboBox Name="BranchCmb" Grid.Column="3" Grid.Row="2"/>
+                    <TextBlock Text="Поиск по номеру заказа:" Grid.Row="1" Grid.Column="5" Foreground="Black"/>
+                    <TextBox Name="SearchTb" Grid.Row="1" Grid.Column="7" TextChanged="SearchTb_TextChanged"/>
+
+                </Grid>
+            </Border>
+            <ListView Name="AllMenuLv" Grid.Row="1" Foreground="Black" Background="White">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="номер заказа"
+                                    DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="филиал"
+                                    DisplayMemberBinding="{Binding Branch.Adress}"/>
+                        <GridViewColumn Header="принят"
+                                    DisplayMemberBinding="{Binding DateStart, StringFormat=dd.MM.yyyy}"/>
+                        <GridViewColumn Header="отправлен"
+                                    DisplayMemberBinding="{Binding DateFinish, StringFormat=dd.MM.yyyy}"/>
+                        <GridViewColumn Header="заказчик">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                                <Binding Path="Customer.LastName"/>
+                                                <Binding Path="Customer.FirstName"/>
+                                                <Binding Path="Customer.MiddleName"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="адрес"
+                                    DisplayMemberBinding="{Binding AdressDelivery}"/>
+                        <GridViewColumn Header="комментарий"
+                                    DisplayMemberBinding="{Binding Comment}"/>
+                        <GridViewColumn Header="статус заказа"
+                                    DisplayMemberBinding="{Binding StatusOrder.Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
     </Grid>
 </Window>

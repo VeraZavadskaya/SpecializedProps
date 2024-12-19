@@ -25,7 +25,7 @@
             <TextBlock Text="YORDER" Grid.Column="2" Foreground="Black" FontSize="80" VerticalAlignment="Center"/>
             <StackPanel Grid.Column="4">
                 <TextBlock Text="тех.поддержка" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 60 0 0"/>
-                <TextBlock Text="+7(987)654-32-10" FontSize="15" Foreground="#FF9901" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Text="+7(987)654-32-10" FontSize="15" TextDecorations="Underline" Foreground="#FF9901" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Background="#FF9901"/>
@@ -36,22 +36,6 @@
                 <ColumnDefinition Width="300" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <Button Name="DirectorBtn" Background="Black" Height="20" Width="20" Margin="0 10 0 5" Click="DirectorBtn_Click"/>
-                    <Button Name="MenegerBtn" Background="Black" Height="20" Width="20" Margin="0 0 0 5" Click="MenegerBtn_Click"/>
-                    <Button Name="SpecialistBtn" Background="Black" Height="20" Width="20" Margin="0 0 0 5" Click="SpecialistBtn_Click"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="Директор" FontSize="15" Margin="0 10 0 5"/>
-                    <TextBlock Text="Менеджер" FontSize="15" Margin="0 0 0 5"/>
-                    <TextBlock Text="Специалист" FontSize="15"/>
-                </StackPanel>
-            </Grid>
             <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
@@ -71,13 +55,11 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Вход" Grid.Row="1" Grid.ColumnSpan="2" Foreground="White" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text="Ошибка входа"  Grid.Row="2" Grid.ColumnSpan="2" Foreground="#C1C1C1" FontSize="15" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <TextBlock Text="пожалуйста, введите свой логин и пароль"  Grid.Row="3" Grid.ColumnSpan="2" Foreground="#C1C1C1" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Text="Логин:" Grid.Row="5" />
-                <TextBlock Text="Пароль:" Grid.Row="7"/>
+                <TextBlock Text="Логин:" Grid.Row="5" Foreground="White"/>
+                <TextBlock Text="Пароль:" Grid.Row="7" Foreground="White"/>
                 <TextBox Name="LoginTb" Grid.Column="1" Grid.Row="5"/>
-                <PasswordBox Name="PaswordPb" Grid.Column="1" Grid.Row="7"/>
-                <CheckBox Name="RememberMeCb" Content="Запомнить меня" Grid.Column="1" Grid.Row="8" Click="RememberMeCb_Click" />
+                <PasswordBox Name="PasswordPb" Grid.Column="1" Grid.Row="7"/>
+                <CheckBox Name="RememberMeCb" Content="Запомнить меня" Grid.Column="1" Grid.Row="8"/>
                 <Button Name="EnterBtn" Content="Войти" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2" Foreground="Black" Width="200" Height="50" Click="EnterBtn_Click"/>
             </Grid>
         </Grid>

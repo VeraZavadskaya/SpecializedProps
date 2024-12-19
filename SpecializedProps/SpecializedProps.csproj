@@ -116,32 +116,8 @@
     <Compile Include="Model\User.cs">
       <DependentUpon>SpecializedPropsModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="View\Pages\AllMenuPage.xaml.cs">
-      <DependentUpon>AllMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\CancelledMenuPage.xaml.cs">
-      <DependentUpon>CancelledMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\DecoratedMenuPage.xaml.cs">
-      <DependentUpon>DecoratedMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\ExecutedMenuPage.xaml.cs">
-      <DependentUpon>ExecutedMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\NewMenuPage.xaml.cs">
-      <DependentUpon>NewMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\ReturnedMenuPage.xaml.cs">
-      <DependentUpon>ReturnedMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\RunningMenuPage.xaml.cs">
-      <DependentUpon>RunningMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\SentMenuPage.xaml.cs">
-      <DependentUpon>SentMenuPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Pages\ShippedMenuPage.xaml.cs">
-      <DependentUpon>ShippedMenuPage.xaml</DependentUpon>
+    <Compile Include="View\Windows\AddCustomerWindow.xaml.cs">
+      <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -165,39 +141,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Pages\AllMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\CancelledMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\DecoratedMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\ExecutedMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\NewMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\ReturnedMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\RunningMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\SentMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Pages\ShippedMenuPage.xaml">
+    <Page Include="View\Windows\AddCustomerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
