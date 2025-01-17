@@ -59,11 +59,11 @@
         </ListBox>
         <Button Name="HyperlinkSketchTb" Grid.Column="2" Grid.Row="8" Content="Найти" Click="HyperlinkSketchTb_Click"/>
         <TextBox Name="ProductionDateTb" Grid.Column="2" Grid.Row="10"/>
-        <TextBox Name="EndDatetb" Grid.Column="4" Grid.Row="10" Margin="0 0 15 0"/>
+        <TextBox Name="EndDateTb" Grid.Column="4" Grid.Row="10" Margin="0 0 15 0"/>
         <TextBox Name="DirectionTb" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="12" Margin="0 0 15 0"/>
         <TextBox Name="CommentTb" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="14" Margin="0 0 15 0"/>
-        <RadioButton GroupName="DeliveryRb" Content="Доставка" Grid.Row="16" Height="20" Width="20" HorizontalAlignment="Left" Checked="DeliveryCb_Checked" Unchecked="DeliveryCb_Unchecked"/>
-        <RadioButton GroupName="DeliveryRb" Content="Самовывоз" Grid.Row="18" Height="20"  HorizontalAlignment="Left" Checked="DeliveryCb_Checked" Unchecked="DeliveryCb_Unchecked"/>
+        <RadioButton GroupName="DeliveryRb" Content="Доставка" Grid.Row="16" Height="30" HorizontalAlignment="Left" Checked="RadioButton_Checked"  Unchecked="RadioButton_Unchecked"/>
+        <RadioButton GroupName="SelfCallRb" Content="Самовывоз" Grid.Row="18" Height="20"  HorizontalAlignment="Left" Checked="RadioButton_Checked_1"  Unchecked="RadioButton_Unchecked_1"/>
         <ComboBox Name="PaymentCmb" Grid.Column="2" Grid.Row="20"/>
         <TextBox Name="SummTb" Grid.Column="2" Grid.Row="22"/>
         <TextBlock Name="ImagePathTbl" Text="Путь к файлу" Grid.Column="4" Grid.Row="8"/>

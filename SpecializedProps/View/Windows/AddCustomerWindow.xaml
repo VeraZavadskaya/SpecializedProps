@@ -5,8 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpecializedProps.View.Windows"
         mc:Ignorable="d"
-        Title="AddCustomerWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Добавление заказчика" Height="500" Width="500">
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160" />
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Фамилия"/>
+        <TextBlock Text="Имя" Grid.Row="2"/>
+        <TextBlock Text="Отчество" Grid.Row="4"/>
+        <TextBlock Text="Номер телефона" Grid.Row="6"/>
+        <TextBlock Text="Email" Grid.Row="8"/>
+        <TextBlock Text="Адрес" Grid.Row="10"/>
+        <TextBlock Text="Паспорт" Grid.Row="12"/>
+        <TextBox Name="LastNameTb" Grid.Column="2"/>
+        <TextBox Name="FirstNameTb" Grid.Column="2" Grid.Row="2"/>
+        <TextBox Name="MiddleNameTb" Grid.Column="2" Grid.Row="4"/>
+        <TextBox Name="NumberPhoneTb" Grid.Column="2" Grid.Row="6"/>
+        <TextBox Name="EmailTb" Grid.Column="2" Grid.Row="8"/>
+        <TextBox Name="AdressTb" Grid.Column="2" Grid.Row="10"/>
+        <TextBox Name="PasportTb" Grid.Column="2" Grid.Row="12"/>
+        <Button Name="AddCustomerBtn" Content="Добавить" Grid.Column="2" Grid.Row="14" Width="200" Click="AddCustomerBtn_Click"/>
     </Grid>
 </Window>
