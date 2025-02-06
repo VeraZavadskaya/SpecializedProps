@@ -32,38 +32,74 @@ namespace SpecializedProps.View.Windows
             NameCustomerCmb.SelectedValuePath = "Id";
             NameCustomerCmb.ItemsSource = App.context.Customer.ToList();
 
+            UserCmb.DisplayMemberPath = "LastName";
+            UserCmb.SelectedValuePath = "Id";
+            UserCmb.ItemsSource = App.context.User.ToList();
+
             MaterialCmb.DisplayMemberPath = "Name";
             MaterialCmb.SelectedValuePath = "Id";
             MaterialCmb.ItemsSource = App.context.Material.ToList();
+
+            FurnitureCmb.DisplayMemberPath = "Name";
+            FurnitureCmb.SelectedValuePath = "Id";
+            FurnitureCmb.ItemsSource = App.context.Furniture.ToList();
 
             PaymentCmb.DisplayMemberPath = "Name";
             PaymentCmb.SelectedValuePath = "Id";
             PaymentCmb.ItemsSource = App.context.Payment.ToList();
 
-            PickUpCmb.DisplayMemberPath = "Name";
+            PickUpCmb.DisplayMemberPath = "Adress";
             PickUpCmb.SelectedValuePath = "Id";
             PickUpCmb.ItemsSource = App.context.Branch.ToList();
+
+            StatusOrderCmb.DisplayMemberPath = "Name";
+            StatusOrderCmb.SelectedValuePath = "Id";
+            StatusOrderCmb.ItemsSource = App.context.StatusOrder.ToList();
+
         }
 
         private void AddOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(NameCustomerCmb.Text) && string.IsNullOrEmpty(MaterialCmb.Text) && string.IsNullOrEmpty(ImagePathTbl.Text) && string.IsNullOrEmpty(ProductionDateTb.Text) && string.IsNullOrEmpty(EndDateTb.Text) && string.IsNullOrEmpty(DirectionTb.Text) && string.IsNullOrEmpty(CommentTb.Text) || string.IsNullOrEmpty(AdressDeliveryTb.Text) || string.IsNullOrEmpty(PickUpCmb.Text) && string.IsNullOrEmpty(PaymentCmb.Text) && string.IsNullOrEmpty(SummTb.Text))
+            if(string.IsNullOrEmpty(NameCustomerCmb.Text) && string.IsNullOrEmpty(UserCmb.Text) && string.IsNullOrEmpty(MaterialCmb.Text) && string.IsNullOrEmpty(FurnitureCmb.Text) && string.IsNullOrEmpty(ImagePathTbl.Text) && ProductionDateDp.SelectedDate == null && EndDateDp.SelectedDate == null && string.IsNullOrEmpty(AdressDeliveryTb.Text) || string.IsNullOrEmpty(PickUpCmb.Text) && string.IsNullOrEmpty(PaymentCmb.Text) && string.IsNullOrEmpty(SummTb.Text) && string.IsNullOrEmpty(StatusOrderCmb.Text))
             {
                 MessageBoxHelper.Warning("Заполните все поля!");
             }
             else
             {
+                string orderId = App.context.Order.Max(o => o.Id);
+                int newOrderId = Convert.ToInt32((orderId.Remove(0, 1)));
+
+
+
                 Order newOrder = new Order()
                 {
-                    Customer = NameCustomerCmb.SelectedItem as Customer,
-                    FurnitureMaterial = MaterialCmb.SelectedItem as FurnitureMaterial,
+                    Id = $"A{newOrderId + 1}",
+                    IdCustomer = (NameCustomerCmb.SelectedItem as Customer).Id,
+                    IdUser = (UserCmb.SelectedItem as User).Id,
+                    IdMaterial = (MaterialCmb.SelectedItem as Material).Id,
+                    IdFurniture = (FurnitureCmb.SelectedItem as Furniture).Id,
                     PhotoSketch = ImagePathTbl.Text,
-                    DateStart = (DateTime)ProductionDateTb.Text,
-                    DateFinish = (DateTime)EndDateTb.Text,
+                    DateStart = ProductionDateDp.SelectedDate.Value,
+                    DateFinish = EndDateDp.SelectedDate.Value,
                     Description = DirectionTb.Text,
                     Comment = CommentTb.Text,
+                    IdStatusOrder = (StatusOrderCmb.SelectedItem as StatusOrder).Id,
+                    Delivery = DeliveryRb.IsChecked == true ? true : false,
+                    AdressDelivery = AdressDeliveryTb.Text,
+                    IdPayment = (PaymentCmb.SelectedItem as Payment).Id,
+                    Summ = Convert.ToDecimal(SummTb.Text)
 
                 };
+                App.context.Order.Add(newOrder);
+
+                if (DeliveryRb.IsChecked == false) newOrder.IdBranch = (PickUpCmb.SelectedItem as Branch).Id;
+                else newOrder.IdBranch = null;
+
+                App.context.SaveChanges();
+                MessageBoxHelper.Information("Заказ добавлен!");
+
+                
+
             }
         }
 
@@ -95,7 +131,8 @@ namespace SpecializedProps.View.Windows
         private void AddCustomerBtn_Click(object sender, RoutedEventArgs e)
         {
             AddCustomerWindow addCustomerWindow = new AddCustomerWindow();
-            addCustomerWindow.Hide();
+            addCustomerWindow.Show();
+            this.Hide();
 
         }
 
@@ -118,6 +155,13 @@ namespace SpecializedProps.View.Windows
         private void RadioButton_Unchecked_1(object sender, RoutedEventArgs e)
         {
             PickUpCmb.IsEnabled = false;
+        }
+
+        private void BackHl_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow= new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpecializedProps.View.Windows"
         mc:Ignorable="d"
-        Title="Добавление заказчика" Height="500" Width="500">
+        Title="Добавление заказчика" Height="500" Width="500" WindowStartupLocation="CenterScreen">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160" />

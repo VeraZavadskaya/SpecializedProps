@@ -16,7 +16,8 @@ namespace SpecializedProps.Model
     {
         public string Id { get; set; }
         public int IdCustomer { get; set; }
-        public int IdFM { get; set; }
+        public int IdMaterial { get; set; }
+        public int IdFurniture { get; set; }
         public string PhotoSketch { get; set; }
         public System.DateTime DateStart { get; set; }
         public System.DateTime DateFinish { get; set; }
@@ -26,13 +27,14 @@ namespace SpecializedProps.Model
         public string AdressDelivery { get; set; }
         public int IdPayment { get; set; }
         public decimal Summ { get; set; }
-        public int IdBranch { get; set; }
+        public Nullable<int> IdBranch { get; set; }
         public int IdStatusOrder { get; set; }
         public int IdUser { get; set; }
     
         public virtual Branch Branch { get; set; }
         public virtual Customer Customer { get; set; }
-        public virtual FurnitureMaterial FurnitureMaterial { get; set; }
+        public virtual Furniture Furniture { get; set; }
+        public virtual Material Material { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual StatusOrder StatusOrder { get; set; }
         public virtual User User { get; set; }

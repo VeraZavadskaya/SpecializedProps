@@ -60,7 +60,7 @@
                 <TextBox Name="LoginTb" Grid.Column="1" Grid.Row="5"/>
                 <PasswordBox Name="PasswordPb" Grid.Column="1" Grid.Row="7"/>
                 <CheckBox Name="RememberMeCb" Content="Запомнить меня" Grid.Column="1" Grid.Row="8"/>
-                <Button Name="EnterBtn" Content="Войти" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2" Foreground="Black" Width="200" Height="50" Click="EnterBtn_Click"/>
+                <Button Name="EnterBtn" Content="Войти" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2" Width="200" Height="50" Click="EnterBtn_Click"/>
             </Grid>
         </Grid>
     </Grid>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpecializedProps.View.Windows"
         mc:Ignorable="d"
-        Title="Создание заказа" SizeToContent="Height" Width="800">
+        Title="Создание заказа" SizeToContent="Height" Width="800" WindowStartupLocation="CenterScreen" >
     <Grid Background="#7F7F7F">
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -24,6 +24,8 @@
             <RowDefinition Height="10" />
             <RowDefinition Height="40" />
             <RowDefinition Height="10" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="10" />
             <RowDefinition Height="25" />
             <RowDefinition Height="10" />
             <RowDefinition Height="25" />
@@ -39,17 +41,22 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <TextBlock Text="Заказ" VerticalAlignment="Center" Margin="20 0 0 0" FontWeight="Bold"/>
-        <TextBlock Text="Заказчик" Grid.Row="2" Margin="15 0 0 0"/>
-        <TextBlock Text="Материалы" Grid.Row="4" Margin="15 0 0 0" VerticalAlignment="Top"/>
-        <TextBlock Text="Эскизы" Grid.Row="8" Margin="15 0 0 0"/>
-        <TextBlock Text="Сроки изготовления" Grid.Row="10" Margin="15 0 0 0"/>
+        <TextBlock Text="Заказчик:" Grid.Row="2" Margin="15 0 0 0"/>
+        <TextBlock Text="Материалы:" Grid.Row="4" Margin="15 0 0 0" VerticalAlignment="Top"/>
+        <TextBlock Text="Товар:" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right"/>
+        <TextBlock Text="Эскиз:" Grid.Row="8" Margin="15 0 0 0"/>
+        <TextBlock Text="Сроки изготовления:" Grid.Row="10" Margin="15 0 0 0"/>
         <TextBlock Text="Описание:" Grid.Row="12" Margin="15 0 0 0" VerticalAlignment="Top"/>
         <TextBlock Text="Комментарии:" Grid.Row="14" Margin="15 0 0 0" VerticalAlignment="Top"/>
-        <TextBlock Text="Способ оплаты:" Grid.Row="20" Margin="15 0 0 0"/>
-        <TextBlock Text="Сумма:" Grid.Row="22" Margin="15 0 0 0"/>
-        <ComboBox Name="NameCustomerCmb" Grid.Column="2" Grid.Row="2" Width="240" HorizontalAlignment="Left"/>
-        <Button Name="AddCustomerBtn" Content="+" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="50" Click="AddCustomerBtn_Click"/>
-        <ComboBox Name="MaterialCmb" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="4" Margin="0 0 15 0 " SelectionChanged="MaterialCmb_SelectionChanged"/>
+        <TextBlock Text="Способ оплаты:" Grid.Row="22" Margin="15 0 0 0"/>
+        <TextBlock Text="Сумма:" Grid.Row="24" Margin="15 0 0 0"/>
+        <TextBlock Text="Статус заказа:" Grid.Row="16" Margin="15 0 0 0"/>
+        <TextBlock Text="Пользователь:" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2"/>
+        <ComboBox Name="NameCustomerCmb" Grid.Column="2" Grid.Row="2" Width="200" HorizontalAlignment="Left"/>
+        <Button Name="AddCustomerBtn" Content="+" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Width="50" Margin="0 0 20 0" Click="AddCustomerBtn_Click"/>
+        <ComboBox Name="UserCmb" Width="150" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Margin="0 0 15 0"/>
+        <ComboBox Name="MaterialCmb" Grid.Column="2" Grid.Row="4" Margin="0 0 100 0 " SelectionChanged="MaterialCmb_SelectionChanged"/>
+        <ComboBox Name="FurnitureCmb" Grid.Column="4" Grid.Row="4" Margin="0 0 15 0" />
         <ListBox Name="SelectedMaterialsLb" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" SelectionChanged="SelectedMaterialsLb_SelectionChanged" Margin="0 0 15 0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -58,19 +65,25 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Name="HyperlinkSketchTb" Grid.Column="2" Grid.Row="8" Content="Найти" Click="HyperlinkSketchTb_Click"/>
-        <TextBox Name="ProductionDateTb" Grid.Column="2" Grid.Row="10"/>
-        <TextBox Name="EndDateTb" Grid.Column="4" Grid.Row="10" Margin="0 0 15 0"/>
+        <DatePicker Name="ProductionDateDp" Grid.Column="2" Grid.Row="10"/>
+        <DatePicker Name="EndDateDp" Grid.Column="4" Grid.Row="10" Margin="0 0 15 0"/>
         <TextBox Name="DirectionTb" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="12" Margin="0 0 15 0"/>
         <TextBox Name="CommentTb" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="14" Margin="0 0 15 0"/>
-        <RadioButton GroupName="DeliveryRb" Content="Доставка" Grid.Row="16" Height="30" HorizontalAlignment="Left" Checked="RadioButton_Checked"  Unchecked="RadioButton_Unchecked"/>
-        <RadioButton GroupName="SelfCallRb" Content="Самовывоз" Grid.Row="18" Height="20"  HorizontalAlignment="Left" Checked="RadioButton_Checked_1"  Unchecked="RadioButton_Unchecked_1"/>
-        <ComboBox Name="PaymentCmb" Grid.Column="2" Grid.Row="20"/>
-        <TextBox Name="SummTb" Grid.Column="2" Grid.Row="22"/>
+        <ComboBox Name="StatusOrderCmb" Grid.Column="2" Grid.Row="16"/>
+        <RadioButton GroupName="DeliveryVariant" Name="DeliveryRb" Content="Доставка" Grid.Row="18" Height="30" HorizontalAlignment="Left" Checked="RadioButton_Checked"  Unchecked="RadioButton_Unchecked"/>
+        <RadioButton GroupName="DeliveryVariant" Content="Самовывоз" Grid.Row="20" Height="20"  HorizontalAlignment="Left" Checked="RadioButton_Checked_1"  Unchecked="RadioButton_Unchecked_1"/>
+        <ComboBox Name="PaymentCmb" Grid.Column="2" Grid.Row="22"/>
+        <TextBox Name="SummTb" Grid.Column="2" Grid.Row="24"/>
         <TextBlock Name="ImagePathTbl" Text="Путь к файлу" Grid.Column="4" Grid.Row="8"/>
-        <TextBlock Text="Адрес:" Grid.Column="2" Grid.Row="16"/>
-        <TextBox Name="AdressDeliveryTb" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="16" Margin="100 0 0 0" IsEnabled="False"/>
-        <TextBlock Text="Филиал:" Grid.Row="18" Grid.Column="2"/>
-        <ComboBox Name="PickUpCmb" Grid.Row="18" Grid.Column="2" Grid.ColumnSpan="2" Margin="100 0 0 0" IsEnabled="False"/>
-        <Button Name="AddOrderBtn" Content="Добавить" Grid.Column="4" Grid.Row="20" Grid.RowSpan="3" Width="150" Height="50" Click="AddOrderBtn_Click"/>
+        <TextBlock Text="Адрес:" Grid.Column="2" Grid.Row="18"/>
+        <TextBox Name="AdressDeliveryTb" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="18" Margin="100 0 0 0" IsEnabled="False"/>
+        <TextBlock Text="Филиал:" Grid.Row="20" Grid.Column="2"/>
+        <ComboBox Name="PickUpCmb" Grid.Row="20" Grid.Column="2" Grid.ColumnSpan="2" Margin="100 0 0 0" IsEnabled="False"/>
+        <Button Name="AddOrderBtn" Content="Добавить" Grid.Column="4" Grid.Row="22" Grid.RowSpan="3" Width="150" Height="50" Click="AddOrderBtn_Click"/>
+        <TextBlock Grid.Column="4" HorizontalAlignment="Right" Margin="0 0 15 0">
+            <Hyperlink Name="BackHl" Foreground="#FF9901" Click="BackHl_Click">
+                Назад
+            </Hyperlink>
+        </TextBlock>
     </Grid>
 </Window>

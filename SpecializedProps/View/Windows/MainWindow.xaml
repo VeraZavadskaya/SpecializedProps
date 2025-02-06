@@ -106,7 +106,7 @@
                         <ColumnDefinition Width="100" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="Филиал:" Grid.Column="1" Grid.Row="2" Foreground="Black"/>
-                    <ComboBox Name="BranchCmb" Grid.Column="3" Grid.Row="2"/>
+                    <ComboBox Name="BranchCmb" Grid.Column="3" Grid.Row="2" SelectionChanged="BranchCmb_SelectionChanged"/>
                     <TextBlock Text="Поиск по номеру заказа:" Grid.Row="1" Grid.Column="5" Foreground="Black"/>
                     <TextBox Name="SearchTb" Grid.Row="1" Grid.Column="7" TextChanged="SearchTb_TextChanged"/>
 

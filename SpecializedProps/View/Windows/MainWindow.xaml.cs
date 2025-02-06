@@ -108,5 +108,18 @@ namespace SpecializedProps
                 AllMenuLv.ItemsSource = App.context.Order.ToList();
             }
         }
+
+        private void BranchCmb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Branch branch = BranchCmb.SelectedItem as Branch;
+            if(BranchCmb.SelectedIndex == 0)
+            {
+                AllMenuLv.ItemsSource = App.context.Order.ToList();
+            }
+            else
+            {
+                AllMenuLv.ItemsSource=App.context.Order.Where(m => m.IdBranch == branch.Id).ToList();
+            }
+        }
     }
 }
