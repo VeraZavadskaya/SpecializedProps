@@ -14,12 +14,17 @@ namespace SpecializedProps.Model
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.OrderMaterial = new HashSet<OrderMaterial>();
+        }
+    
         public string Id { get; set; }
         public int IdCustomer { get; set; }
-        public int IdMaterial { get; set; }
         public int IdFurniture { get; set; }
         public string PhotoSketch { get; set; }
-        public System.DateTime DateStart { get; set; }
+        public Nullable<System.DateTime> DateStart { get; set; }
         public System.DateTime DateFinish { get; set; }
         public string Description { get; set; }
         public string Comment { get; set; }
@@ -34,9 +39,10 @@ namespace SpecializedProps.Model
         public virtual Branch Branch { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Furniture Furniture { get; set; }
-        public virtual Material Material { get; set; }
         public virtual Payment Payment { get; set; }
         public virtual StatusOrder StatusOrder { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderMaterial> OrderMaterial { get; set; }
     }
 }

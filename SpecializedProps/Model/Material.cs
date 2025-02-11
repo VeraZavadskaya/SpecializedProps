@@ -18,7 +18,7 @@ namespace SpecializedProps.Model
         public Material()
         {
             this.FurnitureMaterial = new HashSet<FurnitureMaterial>();
-            this.Order = new HashSet<Order>();
+            this.OrderMaterial = new HashSet<OrderMaterial>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace SpecializedProps.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FurnitureMaterial> FurnitureMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<OrderMaterial> OrderMaterial { get; set; }
     }
 }

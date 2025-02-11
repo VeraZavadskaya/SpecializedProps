@@ -121,5 +121,15 @@ namespace SpecializedProps
                 AllMenuLv.ItemsSource=App.context.Order.Where(m => m.IdBranch == branch.Id).ToList();
             }
         }
+
+        private void AllMenuLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Order selectedOrder = AllMenuLv.SelectedItem as Order;
+
+            if (selectedOrder != null)
+            {
+                OrderDetailsGrid.DataContext = selectedOrder;
+            }
+        }
     }
 }

@@ -33,6 +33,7 @@ namespace SpecializedProps.Model
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Material> Material { get; set; }
         public virtual DbSet<Order> Order { get; set; }
+        public virtual DbSet<OrderMaterial> OrderMaterial { get; set; }
         public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<StatusOrder> StatusOrder { get; set; }

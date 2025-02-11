@@ -78,7 +78,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <Button Name="CreateBtn" Content="Создать заказ" Grid.Row="13" Height="50" Width="150" VerticalAlignment="Top" Click="CreateBtn_Click"/>
-            </Grid> 
+            </Grid>
         </Border>
 
         <Grid Grid.Column="1">
@@ -112,41 +112,69 @@
 
                 </Grid>
             </Border>
-            <ListView Name="AllMenuLv" Grid.Row="1" Foreground="Black" Background="White">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="номер заказа"
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                
+                <ListView Name="AllMenuLv" Foreground="Black" Background="White" SelectionChanged="AllMenuLv_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="номер заказа"
                                     DisplayMemberBinding="{Binding Id}"/>
-                        <GridViewColumn Header="филиал"
+                            <GridViewColumn Header="филиал"
                                     DisplayMemberBinding="{Binding Branch.Adress}"/>
-                        <GridViewColumn Header="принят"
+                            <GridViewColumn Header="принят"
                                     DisplayMemberBinding="{Binding DateStart, StringFormat=dd.MM.yyyy}"/>
-                        <GridViewColumn Header="отправлен"
+                            <GridViewColumn Header="отправлен"
                                     DisplayMemberBinding="{Binding DateFinish, StringFormat=dd.MM.yyyy}"/>
-                        <GridViewColumn Header="заказчик">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock>
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}{0} {1} {2}">
-                                                <Binding Path="Customer.LastName"/>
-                                                <Binding Path="Customer.FirstName"/>
-                                                <Binding Path="Customer.MiddleName"/>
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="адрес"
+                            <GridViewColumn Header="заказчик">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0} {1} {2}">
+                                                    <Binding Path="Customer.LastName"/>
+                                                    <Binding Path="Customer.FirstName"/>
+                                                    <Binding Path="Customer.MiddleName"/>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="адрес"
                                     DisplayMemberBinding="{Binding AdressDelivery}"/>
-                        <GridViewColumn Header="комментарий"
+                            <GridViewColumn Header="комментарий"
                                     DisplayMemberBinding="{Binding Comment}"/>
-                        <GridViewColumn Header="статус заказа"
+                            <GridViewColumn Header="статус заказа"
                                     DisplayMemberBinding="{Binding StatusOrder.Name}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Grid Name="OrderDetailsGrid" Grid.Column="2" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="200" />
+                    </Grid.RowDefinitions>
+
+                    <Image Source="{Binding PhotoSketch}"/>
+                    <TextBlock Grid.Row="2" Text="Материалы:"/>
+                    <ListBox Grid.Row="4" ItemsSource="{Binding OrderMaterial}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Material.Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

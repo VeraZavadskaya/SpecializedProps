@@ -32,9 +32,6 @@ namespace SpecializedProps.View.Windows
             NameCustomerCmb.SelectedValuePath = "Id";
             NameCustomerCmb.ItemsSource = App.context.Customer.ToList();
 
-            UserCmb.DisplayMemberPath = "LastName";
-            UserCmb.SelectedValuePath = "Id";
-            UserCmb.ItemsSource = App.context.User.ToList();
 
             MaterialCmb.DisplayMemberPath = "Name";
             MaterialCmb.SelectedValuePath = "Id";
@@ -60,7 +57,7 @@ namespace SpecializedProps.View.Windows
 
         private void AddOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(string.IsNullOrEmpty(NameCustomerCmb.Text) && string.IsNullOrEmpty(UserCmb.Text) && string.IsNullOrEmpty(MaterialCmb.Text) && string.IsNullOrEmpty(FurnitureCmb.Text) && string.IsNullOrEmpty(ImagePathTbl.Text) && ProductionDateDp.SelectedDate == null && EndDateDp.SelectedDate == null && string.IsNullOrEmpty(AdressDeliveryTb.Text) || string.IsNullOrEmpty(PickUpCmb.Text) && string.IsNullOrEmpty(PaymentCmb.Text) && string.IsNullOrEmpty(SummTb.Text) && string.IsNullOrEmpty(StatusOrderCmb.Text))
+            if(string.IsNullOrEmpty(NameCustomerCmb.Text) && string.IsNullOrEmpty(MaterialCmb.Text) && string.IsNullOrEmpty(FurnitureCmb.Text) && string.IsNullOrEmpty(ImagePathTbl.Text) && ProductionDateDp.SelectedDate == null && EndDateDp.SelectedDate == null && string.IsNullOrEmpty(AdressDeliveryTb.Text) || string.IsNullOrEmpty(PickUpCmb.Text) && string.IsNullOrEmpty(PaymentCmb.Text) && string.IsNullOrEmpty(SummTb.Text) && string.IsNullOrEmpty(StatusOrderCmb.Text))
             {
                 MessageBoxHelper.Warning("Заполните все поля!");
             }
@@ -75,8 +72,7 @@ namespace SpecializedProps.View.Windows
                 {
                     Id = $"A{newOrderId + 1}",
                     IdCustomer = (NameCustomerCmb.SelectedItem as Customer).Id,
-                    IdUser = (UserCmb.SelectedItem as User).Id,
-                    IdMaterial = (MaterialCmb.SelectedItem as Material).Id,
+                    IdUser = App.currentUser.Id,
                     IdFurniture = (FurnitureCmb.SelectedItem as Furniture).Id,
                     PhotoSketch = ImagePathTbl.Text,
                     DateStart = ProductionDateDp.SelectedDate.Value,
@@ -96,6 +92,19 @@ namespace SpecializedProps.View.Windows
                 else newOrder.IdBranch = null;
 
                 App.context.SaveChanges();
+                
+                foreach (Material material in SelectedMaterialsLb.Items)
+                {
+                    OrderMaterial newOrderMaterial = new OrderMaterial()
+                    {
+                        IdOrder = newOrder.Id,
+                        IdMaterial = material.Id
+                    };
+
+                    App.context.OrderMaterial.Add(newOrderMaterial);
+                    App.context.SaveChanges();
+                }
+
                 MessageBoxHelper.Information("Заказ добавлен!");
 
                 

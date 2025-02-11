@@ -68,10 +68,9 @@
           </Key>
           <Property Name="Id" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="IdCustomer" Type="int" Nullable="false" />
-          <Property Name="IdMaterial" Type="int" Nullable="false" />
           <Property Name="IdFurniture" Type="int" Nullable="false" />
           <Property Name="PhotoSketch" Type="nvarchar(max)" />
-          <Property Name="DateStart" Type="date" Nullable="false" />
+          <Property Name="DateStart" Type="date" />
           <Property Name="DateFinish" Type="date" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="Comment" Type="nvarchar" MaxLength="200" />
@@ -82,6 +81,14 @@
           <Property Name="IdBranch" Type="int" />
           <Property Name="IdStatusOrder" Type="int" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrder" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -191,18 +198,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Material">
-          <End Role="Material" Type="Self.Material" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Material">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="IdMaterial" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Payment">
           <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -239,6 +234,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderMaterial_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="OrderMaterial" Type="Self.OrderMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderMaterial">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderMaterial_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderMaterial" Type="Self.OrderMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderMaterial">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -272,6 +291,7 @@
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderMaterial" EntityType="Self.OrderMaterial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" Schema="dbo" store:Type="Tables" />
@@ -300,10 +320,6 @@
             <End Role="Furniture" EntitySet="Furniture" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Material" Association="Self.FK_Order_Material">
-            <End Role="Material" EntitySet="Material" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Payment" Association="Self.FK_Order_Payment">
             <End Role="Payment" EntitySet="Payment" />
             <End Role="Order" EntitySet="Order" />
@@ -315,6 +331,14 @@
           <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderMaterial_Material" Association="Self.FK_OrderMaterial_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="OrderMaterial" EntitySet="OrderMaterial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderMaterial_Order" Association="Self.FK_OrderMaterial_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderMaterial" EntitySet="OrderMaterial" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
             <End Role="Gender" EntitySet="Gender" />
@@ -338,6 +362,7 @@
           <EntitySet Name="Gender" EntityType="SpecializedPropsModel.Gender" />
           <EntitySet Name="Material" EntityType="SpecializedPropsModel.Material" />
           <EntitySet Name="Order" EntityType="SpecializedPropsModel.Order" />
+          <EntitySet Name="OrderMaterial" EntityType="SpecializedPropsModel.OrderMaterial" />
           <EntitySet Name="Payment" EntityType="SpecializedPropsModel.Payment" />
           <EntitySet Name="Role" EntityType="SpecializedPropsModel.Role" />
           <EntitySet Name="StatusOrder" EntityType="SpecializedPropsModel.StatusOrder" />
@@ -370,9 +395,9 @@
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Order_Material" Association="SpecializedPropsModel.FK_Order_Material">
+          <AssociationSet Name="FK_OrderMaterial_Material" Association="SpecializedPropsModel.FK_OrderMaterial_Material">
             <End Role="Material" EntitySet="Material" />
-            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderMaterial" EntitySet="OrderMaterial" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Payment" Association="SpecializedPropsModel.FK_Order_Payment">
             <End Role="Payment" EntitySet="Payment" />
@@ -385,6 +410,10 @@
           <AssociationSet Name="FK_Order_User" Association="SpecializedPropsModel.FK_Order_User">
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderMaterial_Order" Association="SpecializedPropsModel.FK_OrderMaterial_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderMaterial" EntitySet="OrderMaterial" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="SpecializedPropsModel.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
@@ -457,7 +486,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FurnitureMaterial" Relationship="SpecializedPropsModel.FK_FurnitureMaterial_Material" FromRole="Material" ToRole="FurnitureMaterial" />
-          <NavigationProperty Name="Order" Relationship="SpecializedPropsModel.FK_Order_Material" FromRole="Material" ToRole="Order" />
+          <NavigationProperty Name="OrderMaterial" Relationship="SpecializedPropsModel.FK_OrderMaterial_Material" FromRole="Material" ToRole="OrderMaterial" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -465,10 +494,9 @@
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IdCustomer" Type="Int32" Nullable="false" />
-          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
           <Property Name="IdFurniture" Type="Int32" Nullable="false" />
           <Property Name="PhotoSketch" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateStart" Type="DateTime" Precision="0" />
           <Property Name="DateFinish" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -482,10 +510,20 @@
           <NavigationProperty Name="Branch" Relationship="SpecializedPropsModel.FK_Order_Branch" FromRole="Order" ToRole="Branch" />
           <NavigationProperty Name="Customer" Relationship="SpecializedPropsModel.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="Furniture" Relationship="SpecializedPropsModel.FK_Order_Furniture" FromRole="Order" ToRole="Furniture" />
-          <NavigationProperty Name="Material" Relationship="SpecializedPropsModel.FK_Order_Material" FromRole="Order" ToRole="Material" />
           <NavigationProperty Name="Payment" Relationship="SpecializedPropsModel.FK_Order_Payment" FromRole="Order" ToRole="Payment" />
           <NavigationProperty Name="StatusOrder" Relationship="SpecializedPropsModel.FK_Order_StatusOrder" FromRole="Order" ToRole="StatusOrder" />
           <NavigationProperty Name="User" Relationship="SpecializedPropsModel.FK_Order_User" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="OrderMaterial" Relationship="SpecializedPropsModel.FK_OrderMaterial_Order" FromRole="Order" ToRole="OrderMaterial" />
+        </EntityType>
+        <EntityType Name="OrderMaterial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrder" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="SpecializedPropsModel.FK_OrderMaterial_Material" FromRole="OrderMaterial" ToRole="Material" />
+          <NavigationProperty Name="Order" Relationship="SpecializedPropsModel.FK_OrderMaterial_Order" FromRole="OrderMaterial" ToRole="Order" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -613,14 +651,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Material">
+        <Association Name="FK_OrderMaterial_Material">
           <End Type="SpecializedPropsModel.Material" Role="Material" Multiplicity="1" />
-          <End Type="SpecializedPropsModel.Order" Role="Order" Multiplicity="*" />
+          <End Type="SpecializedPropsModel.OrderMaterial" Role="OrderMaterial" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Material">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="OrderMaterial">
               <PropertyRef Name="IdMaterial" />
             </Dependent>
           </ReferentialConstraint>
@@ -658,6 +696,18 @@
             </Principal>
             <Dependent Role="Order">
               <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderMaterial_Order">
+          <End Type="SpecializedPropsModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="SpecializedPropsModel.OrderMaterial" Role="OrderMaterial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderMaterial">
+              <PropertyRef Name="IdOrder" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -759,8 +809,16 @@
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="PhotoSketch" ColumnName="PhotoSketch" />
                 <ScalarProperty Name="IdFurniture" ColumnName="IdFurniture" />
-                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
                 <ScalarProperty Name="IdCustomer" ColumnName="IdCustomer" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderMaterial">
+            <EntityTypeMapping TypeName="SpecializedPropsModel.OrderMaterial">
+              <MappingFragment StoreEntitySet="OrderMaterial">
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

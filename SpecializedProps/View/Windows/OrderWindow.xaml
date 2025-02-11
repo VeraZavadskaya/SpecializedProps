@@ -51,10 +51,8 @@
         <TextBlock Text="Способ оплаты:" Grid.Row="22" Margin="15 0 0 0"/>
         <TextBlock Text="Сумма:" Grid.Row="24" Margin="15 0 0 0"/>
         <TextBlock Text="Статус заказа:" Grid.Row="16" Margin="15 0 0 0"/>
-        <TextBlock Text="Пользователь:" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2"/>
         <ComboBox Name="NameCustomerCmb" Grid.Column="2" Grid.Row="2" Width="200" HorizontalAlignment="Left"/>
         <Button Name="AddCustomerBtn" Content="+" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Width="50" Margin="0 0 20 0" Click="AddCustomerBtn_Click"/>
-        <ComboBox Name="UserCmb" Width="150" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right" Margin="0 0 15 0"/>
         <ComboBox Name="MaterialCmb" Grid.Column="2" Grid.Row="4" Margin="0 0 100 0 " SelectionChanged="MaterialCmb_SelectionChanged"/>
         <ComboBox Name="FurnitureCmb" Grid.Column="4" Grid.Row="4" Margin="0 0 15 0" />
         <ListBox Name="SelectedMaterialsLb" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="3" SelectionChanged="SelectedMaterialsLb_SelectionChanged" Margin="0 0 15 0">

@@ -89,6 +89,9 @@
     <Compile Include="Model\Order.cs">
       <DependentUpon>SpecializedPropsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\OrderMaterial.cs">
+      <DependentUpon>SpecializedPropsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Payment.cs">
       <DependentUpon>SpecializedPropsModel.tt</DependentUpon>
     </Compile>
