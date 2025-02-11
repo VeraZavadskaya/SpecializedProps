@@ -32,7 +32,7 @@
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Заказы" Grid.Row="1" FontSize="25"/>
-                <TextBlock Grid.Row="3">
+                <TextBlock Grid.Row="3" >
                     <Hyperlink Name="AllMenuHl" Foreground="White" TextDecorations="None" Click="AllMenuHl_Click">
                         Все
                     </Hyperlink>
