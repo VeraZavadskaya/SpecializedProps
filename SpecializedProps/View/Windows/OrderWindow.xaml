@@ -62,7 +62,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Name="HyperlinkSketchTb" Grid.Column="2" Grid.Row="8" Content="Найти" Click="HyperlinkSketchTb_Click"/>
+        <Button Name="HyperlinkSketchTb" Grid.Column="2" Grid.Row="8" Foreground="White" Width="150" Content="Найти" Click="HyperlinkSketchTb_Click"/>
         <DatePicker Name="ProductionDateDp" Grid.Column="2" Grid.Row="10"/>
         <DatePicker Name="EndDateDp" Grid.Column="4" Grid.Row="10" Margin="0 0 15 0"/>
         <TextBox Name="DirectionTb" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="12" Margin="0 0 15 0"/>
@@ -77,7 +77,7 @@
         <TextBox Name="AdressDeliveryTb" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="18" Margin="100 0 0 0" IsEnabled="False"/>
         <TextBlock Text="Филиал:" Grid.Row="20" Grid.Column="2"/>
         <ComboBox Name="PickUpCmb" Grid.Row="20" Grid.Column="2" Grid.ColumnSpan="2" Margin="100 0 0 0" IsEnabled="False"/>
-        <Button Name="AddOrderBtn" Content="Добавить" Grid.Column="4" Grid.Row="22" Grid.RowSpan="3" Width="150" Height="50" Click="AddOrderBtn_Click"/>
+        <Button Name="AddOrderBtn" Content="Добавить" Grid.Column="4" Grid.Row="22" Grid.RowSpan="3" Foreground="White" Width="150" Height="50" Click="AddOrderBtn_Click"/>
         <TextBlock Grid.Column="4" HorizontalAlignment="Right" Margin="0 0 15 0">
             <Hyperlink Name="BackHl" Foreground="#FF9901" Click="BackHl_Click">
                 Назад

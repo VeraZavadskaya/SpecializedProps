@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpecializedProps.View.Windows"
         mc:Ignorable="d"
-        Title="Добавление заказчика" Height="500" Width="500" WindowStartupLocation="CenterScreen">
+        Title="Добавление заказчика" Height="500" Width="500" WindowStartupLocation="CenterScreen" Background="#7F7F7F">
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="160" />
@@ -44,6 +44,6 @@
         <TextBox Name="EmailTb" Grid.Column="2" Grid.Row="8"/>
         <TextBox Name="AdressTb" Grid.Column="2" Grid.Row="10"/>
         <TextBox Name="PasportTb" Grid.Column="2" Grid.Row="12"/>
-        <Button Name="AddCustomerBtn" Content="Добавить" Grid.Column="2" Grid.Row="14" Width="200" Click="AddCustomerBtn_Click"/>
+        <Button Name="AddCustomerBtn" Content="Добавить" Grid.Column="2" Grid.Row="14" Foreground="White" Width="200" Click="AddCustomerBtn_Click"/>
     </Grid>
 </Window>

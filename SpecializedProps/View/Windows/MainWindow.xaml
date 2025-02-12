@@ -77,7 +77,7 @@
                         Отмененные
                     </Hyperlink>
                 </TextBlock>
-                <Button Name="CreateBtn" Content="Создать заказ" Grid.Row="13" Height="50" Width="150" VerticalAlignment="Top" Click="CreateBtn_Click"/>
+                <Button Name="CreateBtn" Content="Создать заказ" Foreground="White" Grid.Row="13" Height="50" Width="150" VerticalAlignment="Top" Click="CreateBtn_Click"/>
             </Grid>
         </Border>
 
