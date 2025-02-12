@@ -59,7 +59,6 @@ namespace SpecializedProps
         private void NewMenuHl_Click(object sender, RoutedEventArgs e)
         {
             AllMenuLv.ItemsSource = App.context.Order.Where(o => o.IdStatusOrder == 1).ToList();
-
         }
 
         private void SentMenuHl_Click(object sender, RoutedEventArgs e)

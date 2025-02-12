@@ -158,15 +158,75 @@
 
                 <Grid Name="OrderDetailsGrid" Grid.Column="2" Margin="10">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200" />
-                        <RowDefinition Height="10" />
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="5" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="200" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="150" />
                     </Grid.RowDefinitions>
-
-                    <Image Source="{Binding PhotoSketch}"/>
-                    <TextBlock Grid.Row="2" Text="Материалы:"/>
-                    <ListBox Grid.Row="4" ItemsSource="{Binding OrderMaterial}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding PhotoSketch}" Grid.ColumnSpan="3"/>
+                    <TextBlock Text="Номер заказа:" Grid.Row="2"/>
+                    <TextBlock Text="Заказчик:" Grid.Row="4"/>
+                    <TextBlock Text="Товар:" Grid.Row="6"/>
+                    <TextBlock Text="Дата начала:" Grid.Row="8"/>
+                    <TextBlock Text="Дата окончания:" Grid.Row="10"/>
+                    <TextBlock Text="Статус заказа:" Grid.Row="12"/>
+                    <TextBlock Text="Описание:" Grid.Row="14"/>
+                    <TextBlock Text="Комментарий:" Grid.Row="16"/>
+                    <TextBlock Text="Доставка:" Grid.Row="18"/>
+                    <TextBlock Text="Адрес доставки:" Grid.Row="20"/>
+                    <TextBlock Text="Филлиал:" Grid.Row="22"/>
+                    <TextBlock Text="Способ оплаты:" Grid.Row="24"/>
+                    <TextBlock Text="Сумма:" Grid.Row="26"/>
+                    <TextBlock Text="Пользователь:" Grid.Row="28"/>
+                    <TextBox Name="IdOrderTb" Text="{Binding Id}" Grid.Column="3" Grid.Row="2"/>
+                    <TextBox Name="CustomerTb" Text="{Binding Customer.LastName}" Grid.Column="2" Grid.Row="4"/>
+                    <TextBox Name="FurnitureTb" Text="{Binding Furniture.Name}" Grid.Column="2" Grid.Row="6"/>
+                    <TextBox Name="DateStartTb" Text="{Binding DateStart, StringFormat=dd.MM.yyyy}" Grid.Column="2" Grid.Row="8"/>
+                    <TextBox Name="DateFinishTb" Text="{Binding DateFinish, StringFormat=dd.MM.yyyy}" Grid.Column="2" Grid.Row="10"/>
+                    <TextBox Name="StatusOrderTb" Text="{Binding StatusOrder.Name}" Grid.Column="2" Grid.Row="12"/>
+                    <TextBox Name="DescriptionTb" Text="{Binding Description}" Grid.Column="2" Grid.Row="14"/>
+                    <TextBox Name="CommentTb" Text="{Binding Comment}" Grid.Column="2" Grid.Row="16"/>
+                    <TextBox Name="DeliveryTb" Text="{Binding Delivery}" Grid.Column="2" Grid.Row="18"/>
+                    <TextBox Name="AdressDeliveryTb" Text="{Binding AdressDelivery}" Grid.Column="2" Grid.Row="20"/>
+                    <TextBox Name="BranchTb" Text="{Binding Branch.Adress}" Grid.Column="2" Grid.Row="22"/>
+                    <TextBox Name="PaymentTb" Text="{Binding Payment.Name}" Grid.Column="2" Grid.Row="24"/>
+                    <TextBox Name="SummTb" Text="{Binding Summ}" Grid.Column="2" Grid.Row="26"/>
+                    <TextBox Name="UserTb" Text="{Binding User.LastName}" Grid.Column="2" Grid.Row="28"/>
+                    <TextBlock Text="Материалы:" Grid.Row="30" />
+                    <ListBox Grid.Row="31" Grid.ColumnSpan="3" ItemsSource="{Binding OrderMaterial}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Material.Name}"/>
